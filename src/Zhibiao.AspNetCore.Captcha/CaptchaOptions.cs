@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 
 namespace Zhibiao.AspNetCore.Captcha
 {
-    public class CaptchaOptions: IOptions<CaptchaOptions>
+    public class CaptchaOptions
     {
         /// <summary>
         /// SessionKey
@@ -29,7 +28,5 @@ namespace Zhibiao.AspNetCore.Captcha
         /// 验证码图片高度
         /// </summary>
         public int ImageHeight { get; set; } = 50;
-
-        public CaptchaOptions Value => throw new NotImplementedException();
     }
 }

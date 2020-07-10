@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
-using System.Text.Json;
 
 namespace Zhibiao.AspNetCore.Captcha
 {
@@ -32,7 +32,7 @@ namespace Zhibiao.AspNetCore.Captcha
                 AbsoluteExpiration = DateTimeOffset.UtcNow.Add(_captchaOptions.Expire)
             };
             _contextAccessor.HttpContext.Session.SetString(_captchaOptions.SessionKey
-                , JsonSerializer.Serialize(captchaModel));
+                , JsonConvert.SerializeObject(captchaModel));
 
             return this.GetEnDigitalCaptchaByte(captcha);
         }
@@ -42,7 +42,7 @@ namespace Zhibiao.AspNetCore.Captcha
             try
             {
                 var json = _contextAccessor.HttpContext.Session.GetString(_captchaOptions.SessionKey);
-                var captchaModel = JsonSerializer.Deserialize<CaptchaModel>(json);
+                var captchaModel = JsonConvert.DeserializeObject<CaptchaModel>(json);
                 return string.Equals(inputCaptcha, captchaModel?.Captcha, StringComparison.OrdinalIgnoreCase)
                     && captchaModel?.AbsoluteExpiration > DateTimeOffset.UtcNow;
             }
