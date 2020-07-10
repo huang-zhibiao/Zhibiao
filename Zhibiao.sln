@@ -7,9 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhibiao.AspNetCore.Captcha"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF497E28-E639-4F34-BE67-4CAD7C150292}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{ED9B5681-89A6-428A-88DD-7C592BC88C35}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{ED9B5681-89A6-428A-88DD-7C592BC88C35}"
 	ProjectSection(SolutionItems) = preProject
 		common.props = common.props
+		LICENSE = LICENSE
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{49E6EEBB-2493-4C8B-8945-263DFC80F246}"
