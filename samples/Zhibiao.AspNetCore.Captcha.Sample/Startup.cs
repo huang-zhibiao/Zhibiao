@@ -24,7 +24,11 @@ namespace Zhibiao.AspNetCore.Captcha.Sample
         {
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
-            services.AddCaptchaService();
+            services.AddCaptchaService(options =>
+            {
+                options.ImageWidth = 120;
+                options.ImageHeight = 36;
+            });
             services.AddSession();
         }
 

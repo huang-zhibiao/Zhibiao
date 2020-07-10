@@ -89,25 +89,23 @@ namespace Zhibiao.AspNetCore.Captcha
             void DrawCaptcha()
             {
                 var fontBrush = new SolidBrush(Color.Black);
-                var fontSize = _captchaOptions.ImageWidth / _captchaOptions.Length;
+                var width = _captchaOptions.ImageWidth / _captchaOptions.Length;
+                var fontSize = width > _captchaOptions.ImageHeight ? _captchaOptions.ImageHeight : width;
                 var font = new Font(FontFamily.GenericSerif, fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
                 for (var i = 0; i < _captchaOptions.Length; i++)
                 {
                     fontBrush.Color = this.GetRandomDeepColor();
 
-                    var shiftPx = fontSize / 6;
-                    float x = i * fontSize + _random.Next(-shiftPx, shiftPx) + _random.Next(-shiftPx, shiftPx);
-                    var maxY = _captchaOptions.ImageHeight - fontSize;
-                    if (maxY < 0) maxY = 0;
-                    float y = _random.Next(0, maxY);
+                    var shiftPx = width / 6;
+                    float x = i * width + _random.Next(-shiftPx, shiftPx) + _random.Next(-shiftPx, shiftPx);
 
-                    graphics.DrawString(captcha[i].ToString(), font, fontBrush, x, y);
+                    graphics.DrawString(captcha[i].ToString(), font, fontBrush, x, 0);
                 }
             }
 
             void DrawDisorderLine()
             {
-                var linePen = new Pen(new SolidBrush(Color.Black), 3);
+                var linePen = new Pen(new SolidBrush(Color.Black), 2);
                 for (var i = 0; i < _random.Next(3, 5); i++)
                 {
                     linePen.Color = this.GetRandomDeepColor();

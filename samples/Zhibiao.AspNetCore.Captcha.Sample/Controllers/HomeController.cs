@@ -26,6 +26,22 @@ namespace Zhibiao.AspNetCore.Captcha.Sample.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateCaptcha]
+        public IActionResult Login(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(viewModel);
+        }
+
         public IActionResult Privacy()
         {
             return View();
