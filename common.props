@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <Version>1.0.1</Version>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <NoWarn>$(NoWarn);CS1591;CS0168</NoWarn>
     <Authors>huangzhibiao@aliyun.com</Authors>
     <PackageProjectUrl>https://github.com/huang-zhibiao/Zhibiao</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/huang-zhibiao/Zhibiao/blob/master/LICENSE</PackageLicenseUrl>
