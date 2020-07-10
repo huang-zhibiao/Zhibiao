@@ -2,6 +2,7 @@
   <PropertyGroup>
     <Version>1.0.0</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <PackageLicenseUrl>https://github.com/huang-zhibiao/Zhibiao/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/huang-zhibiao/Zhibiao</RepositoryUrl>
   </PropertyGroup>
