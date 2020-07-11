@@ -80,11 +80,13 @@ namespace Zhibiao.AspNetCore.Captcha
 
             DrawCaptcha();
             DrawDisorderLine();
-            AdjustRippleEffect();
+            DistortEffect();
 
-            var ms = new MemoryStream();
-            bitmap.Save(ms, ImageFormat.Png);
-            return ms.ToArray();
+            using (var ms = new MemoryStream())
+            {
+                bitmap.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
 
             void DrawCaptcha()
             {
@@ -116,91 +118,23 @@ namespace Zhibiao.AspNetCore.Captcha
                 }
             }
 
-            void AdjustRippleEffect()
+            void DistortEffect()
             {
-                short nWave = 6;
-                var nWidth = bitmap.Width;
-                var nHeight = bitmap.Height;
-
-                var pt = new Point[nWidth, nHeight];
-
-                for (var x = 0; x < nWidth; ++x)
+                using (var copy = (Bitmap)bitmap.Clone())
                 {
-                    for (var y = 0; y < nHeight; ++y)
+                    var distort = _random.Next(1, 6) * (_random.Next(10) == 1 ? 1 : -1);
+                    for (int y = 0; y < _captchaOptions.ImageHeight; y++)
                     {
-                        var xo = nWave * Math.Sin(2.0 * 3.1415 * y / 128.0);
-                        var yo = nWave * Math.Cos(2.0 * 3.1415 * x / 128.0);
-
-                        var newX = x + xo;
-                        var newY = y + yo;
-
-                        if (newX > 0 && newX < nWidth)
+                        for (int x = 0; x < _captchaOptions.ImageWidth; x++)
                         {
-                            pt[x, y].X = (int)newX;
-                        }
-                        else
-                        {
-                            pt[x, y].X = 0;
-                        }
-
-
-                        if (newY > 0 && newY < nHeight)
-                        {
-                            pt[x, y].Y = (int)newY;
-                        }
-                        else
-                        {
-                            pt[x, y].Y = 0;
+                            int newX = (int)(x + (distort * Math.Sin(Math.PI * y / 84.0)));
+                            int newY = (int)(y + (distort * Math.Cos(Math.PI * x / 44.0)));
+                            if (newX < 0 || newX >= _captchaOptions.ImageWidth) newX = 0;
+                            if (newY < 0 || newY >= _captchaOptions.ImageHeight) newY = 0;
+                            bitmap.SetPixel(x, y, copy.GetPixel(newX, newY));
                         }
                     }
                 }
-
-                var bSrc = (Bitmap)bitmap.Clone();
-
-                var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-                var bmSrc = bSrc.LockBits(new Rectangle(0, 0, bSrc.Width, bSrc.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
-                var scanline = bitmapData.Stride;
-
-                var scan0 = bitmapData.Scan0;
-                var srcScan0 = bmSrc.Scan0;
-
-                unsafe
-                {
-                    var p = (byte*)(void*)scan0;
-                    var pSrc = (byte*)(void*)srcScan0;
-
-                    var nOffset = bitmapData.Stride - bitmap.Width * 3;
-
-                    for (var y = 0; y < nHeight; ++y)
-                    {
-                        for (var x = 0; x < nWidth; ++x)
-                        {
-                            var xOffset = pt[x, y].X;
-                            var yOffset = pt[x, y].Y;
-
-                            if (yOffset >= 0 && yOffset < nHeight && xOffset >= 0 && xOffset < nWidth)
-                            {
-                                if (pSrc != null)
-                                {
-                                    if (p != null)
-                                    {
-                                        p[0] = pSrc[yOffset * scanline + xOffset * 3];
-                                        p[1] = pSrc[yOffset * scanline + xOffset * 3 + 1];
-                                        p[2] = pSrc[yOffset * scanline + xOffset * 3 + 2];
-                                    }
-                                }
-                            }
-
-                            p += 3;
-                        }
-                        p += nOffset;
-                    }
-                }
-
-                bitmap.UnlockBits(bitmapData);
-                bSrc.UnlockBits(bmSrc);
-                bSrc.Dispose();
             }
         }
 
