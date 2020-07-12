@@ -9,12 +9,11 @@ namespace Zhibiao.AspNetCore.Captcha
             this IServiceCollection services,
             Action<CaptchaOptions> options = null)
         {
-            if (options == null)
+            if (options != null)
             {
-                options = _ => { };
+                services.Configure(options);
             }
 
-            services.Configure(options);
             services.AddScoped<ICaptchaService, CaptchaService>();
         }
     }

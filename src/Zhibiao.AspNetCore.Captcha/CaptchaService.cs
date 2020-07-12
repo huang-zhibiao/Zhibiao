@@ -101,7 +101,7 @@ namespace Zhibiao.AspNetCore.Captcha
                     var shiftPx = width / 6;
                     float x = i * width + _random.Next(-shiftPx, shiftPx) + _random.Next(-shiftPx, shiftPx);
 
-                    graphics.DrawString(captcha[i].ToString(), font, fontBrush, x, 0);
+                    graphics.DrawString(captcha[i].ToString(), font, fontBrush, x, (_captchaOptions.ImageHeight - fontSize) / 2);
                 }
             }
 
