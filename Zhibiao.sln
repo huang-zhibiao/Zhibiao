@@ -17,9 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{49E6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhibiao.AspNetCore.Captcha.Sample", "samples\Zhibiao.AspNetCore.Captcha.Sample\Zhibiao.AspNetCore.Captcha.Sample.csproj", "{5C7DC351-48C4-4AE3-83DC-19E9F6514A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhibiao.FastDFS.Client", "src\Zhibiao.FastDFS.Client\Zhibiao.FastDFS.Client.csproj", "{88D4F583-5326-4907-AEEA-23036A8FFD98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhibiao.FastDFS.Client", "src\Zhibiao.FastDFS.Client\Zhibiao.FastDFS.Client.csproj", "{88D4F583-5326-4907-AEEA-23036A8FFD98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhibiao.AspNetCore.CSRedis", "src\Zhibiao.AspNetCore.CSRedis\Zhibiao.AspNetCore.CSRedis.csproj", "{54EEC312-E071-4FAB-835F-42CBCA00251E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zhibiao.AspNetCore.CSRedis", "src\Zhibiao.AspNetCore.CSRedis\Zhibiao.AspNetCore.CSRedis.csproj", "{54EEC312-E071-4FAB-835F-42CBCA00251E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zhibiao.AspNetCore.Mvc.UI.Layui", "src\Zhibiao.AspNetCore.Mvc.UI.Layui\Zhibiao.AspNetCore.Mvc.UI.Layui.csproj", "{D7C726C8-931E-4E53-B117-F986C81DA223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{54EEC312-E071-4FAB-835F-42CBCA00251E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54EEC312-E071-4FAB-835F-42CBCA00251E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54EEC312-E071-4FAB-835F-42CBCA00251E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C726C8-931E-4E53-B117-F986C81DA223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C726C8-931E-4E53-B117-F986C81DA223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C726C8-931E-4E53-B117-F986C81DA223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C726C8-931E-4E53-B117-F986C81DA223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{5C7DC351-48C4-4AE3-83DC-19E9F6514A40} = {49E6EEBB-2493-4C8B-8945-263DFC80F246}
 		{88D4F583-5326-4907-AEEA-23036A8FFD98} = {FF497E28-E639-4F34-BE67-4CAD7C150292}
 		{54EEC312-E071-4FAB-835F-42CBCA00251E} = {FF497E28-E639-4F34-BE67-4CAD7C150292}
+		{D7C726C8-931E-4E53-B117-F986C81DA223} = {FF497E28-E639-4F34-BE67-4CAD7C150292}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BC13B83-82BA-4A90-9FA2-F56051E722B4}
